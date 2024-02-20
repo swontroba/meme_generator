@@ -1,13 +1,20 @@
-# class accepts an image output path, selects a random image and quote, saves the image to the output path and returns the path to the image.
+"""
+class accepts an image output path, selects a random image and quote,
+saves the image to the output path and returns the path to the image.
+"""
 
 import random
 
 from PIL import Image, ImageDraw, ImageFont
 
+from matplotlib import font_manager
+
 
 class MemeEngine:
-    """This class takes in an image output path, selects a random image and quote, saves the image to the output path and returns the path to the image."""
-
+    """
+    This class takes in an image output path, selects a random image and quote, saves the image to the output path
+    and returns the path to the image.
+    """
     def __init__(self, output_path):
         """Create instance of class."""
         self.output_path = output_path
@@ -34,9 +41,16 @@ class MemeEngine:
             if text and author:
                 message = f"{text}\n- {author}"
                 draw = ImageDraw.Draw(img)
-                # check specific fonts
-                font = ImageFont.load_default()
+                # simple
+                # font = ImageFont.load_default()
+                # nicer but needs matplotlib an additional lib
+                font = font_manager.FontProperties(family='sans-serif', weight='bold')
+                file = font_manager.findfont(font)
+                print(file)
+                font = ImageFont.truetype(file, 20)
                 axis = (10, self.get_rand_y(img.size[1]))
+                left, top, right, bottom = draw.textbbox(axis, message, font=font)
+                draw.rectangle((left-5, top-5, right+5, bottom+5), outline='red')
                 draw.text(axis, message, font=font, fill="white")
 
             out_path = f"{self.output_path}/{random.randint(0, 1000000)}.jpeg"
