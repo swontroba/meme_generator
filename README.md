@@ -51,7 +51,7 @@ Resulting in a command like the following:
 ## Submodules Summary
 
 This project is split up into several modules/directories, like defined in the project description.
-The main ones are the [QuoteEngine](./QuoteEngine) and [MemeEngine](./MemeEngine) modules. 
+The main ones are the [QuoteEngine](./src/QuoteEngine) and [MemeEngine](./src/MemeEngine) modules. 
 They handle parsing & extracting data from files like txt, pdf or csv. 
 Later using the data to create memes with the MemeEngine. 
 
@@ -61,4 +61,4 @@ The \_data directory holds all the data for various parts of the project.
 The tmp directory is responsible for keeping temporary files created. 
 The static directory is for static files created when running meme.py/app.py.
 The .gitkeep file in there helps to add a completely empty directory.
-The pyproject.toml has some specifi ruff - code formating configuration.
+The pyproject.toml has some specific ruff - code formatting configuration.
